@@ -151,6 +151,10 @@ For manual time settings, it is needed to preconfigure the date/time values and 
                     <desc>Notify if NTP feature is available on device.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </event>
+                <event name="OnNewStatusSetDateTimeZoneIsAvailable">
+                    <desc>Notify if functions to setDateTime and setTimeZone are available on device.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
                 <function name="setParameterName">
                     <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
                     <param desc="Name of the parameter" multiplicity="1" name="name" type="string"/>
@@ -251,7 +255,7 @@ If set to false the NTP time is just printed to the log.</desc>
             </serves>
         </crown>
         <meta key="author">SICK AG</meta>
-        <meta key="version">3.2.0</meta>
+        <meta key="version">3.3.0</meta>
         <meta key="priority">low</meta>
         <meta key="copy-protected">false</meta>
         <meta key="read-protected">false</meta>

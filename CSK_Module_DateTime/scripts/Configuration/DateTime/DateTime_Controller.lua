@@ -23,6 +23,8 @@ local dateTime_Model
 Script.serveEvent('CSK_DateTime.OnNewStatusCSKStyle', 'DateTime_OnNewStatusCSKStyle')
 Script.serveEvent('CSK_DateTime.OnNewStatusModuleVersion', 'DateTime_OnNewStatusModuleVersion')
 Script.serveEvent('CSK_DateTime.OnNewStatusModuleIsActive', 'DateTime_OnNewStatusModuleIsActive')
+Script.serveEvent('CSK_DateTime.OnNewStatusSetDateTimeZoneIsAvailable', 'DateTime_OnNewStatusSetDateTimeZoneIsAvailable')
+
 Script.serveEvent('CSK_DateTime.OnNewStatusNTPIsAvailable', 'DateTime_OnNewStatusNTPIsAvailable')
 
 Script.serveEvent("CSK_DateTime.OnNewLocalTime", "DateTime_OnNewLocalTime")
@@ -130,6 +132,7 @@ local function handleOnExpiredTmrDateTime()
 
   Script.notifyEvent("DateTime_OnNewStatusModuleVersion", 'v' .. dateTime_Model.version)
   Script.notifyEvent("DateTime_OnNewStatusCSKStyle", dateTime_Model.styleForUI)
+  Script.notifyEvent("DateTime_OnNewStatusSetDateTimeZoneIsAvailable", _G.availableAPIs.dateTimeZone)
   Script.notifyEvent("DateTime_OnNewStatusModuleIsActive", _G.availableAPIs.default)
   Script.notifyEvent("DateTime_OnNewStatusNTPIsAvailable", _G.availableAPIs.specific)
 
@@ -220,21 +223,21 @@ end
 Script.serveFunction("CSK_DateTime.setSecond", setSecond)
 
 local function setTime()
-  if dateTime_Model.setupActive then
+  if availableAPIs.dateTimeZone then
     _G.logger:info(nameOfModule .. ": Setting new time:")
     _G.logger:info(string.format( "%04u-%02u-%02uT%02u:%02u:%02u",
     dateTime_Model.year, dateTime_Model.month, dateTime_Model.day, dateTime_Model.hour, dateTime_Model.min, dateTime_Model.sec))
     DateTime.setDateTime(dateTime_Model.year, dateTime_Model.month, dateTime_Model.day, dateTime_Model.hour, dateTime_Model.min, dateTime_Model.sec)
     pageCalled()
   else
-    _G.logger:warning(nameOfModule .. ": Setting timezone on SAE / Emulator not possible.")
+    _G.logger:warning(nameOfModule .. ": Setting timezone on SAE / Emulator / SIM300 not possible.")
     return false
   end
 end
 Script.serveFunction("CSK_DateTime.setTime", setTime)
 
 local function setTimezone(zone)
-  if dateTime_Model.setupActive then
+  if availableAPIs.dateTimeZone then
     local suc = DateTime.setTimeZone(zone)
     if suc then
       local exists = false
@@ -259,8 +262,8 @@ local function setTimezone(zone)
     tmrDateTime:start()
     return suc
   else
-    _G.logger:warning(nameOfModule .. ": Setting timezone on SAE / Emulator not possible.")
-    Script.notifyEvent("DateTime_OnNewStatusTimezoneInfo", 'INFO: Setting timezone on SAE / Emulator not possible.')
+    _G.logger:warning(nameOfModule .. ": Setting timezone on SAE / Emulator / SIM300 not possible.")
+    Script.notifyEvent("DateTime_OnNewStatusTimezoneInfo", 'INFO: Setting timezone on SAE / Emulator / SIM300 not possible.')
     tmrDateTime:start()
     return false
   end
