@@ -22,15 +22,6 @@ dateTime_Model.persistentModuleAvailable = CSK_PersistentData ~= nil or false
 dateTime_Model.parametersName = 'CSK_DateTime_Parameter' -- name of parameter dataset to be used for this module
 dateTime_Model.parameterLoadOnReboot = false -- Status if parameter dataset should be loaded on app/device reboot
 
--- Check if running on Emulator / SAE -> if so it is not possible to setup time
-local typeName = Engine.getTypeName()
-
-if typeName == 'AppStudioEmulator' or typeName == 'SICK AppEngine' then
-  dateTime_Model.setupActive = false
-else
-  dateTime_Model.setupActive = true
-end
-
 -- Load script to communicate with the DateTime_Model interface and give access
 -- to the DateTime_Model object.
 -- Check / edit this script to see/edit functions which communicate with the UI

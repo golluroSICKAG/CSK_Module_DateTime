@@ -6,12 +6,12 @@
         <layout-row id="RowLayout17" style="flex-grow: 0; flex-shrink: 0">
             <layout-column id="ColumnLayout2" style="align-items: stretch">
                 <layout-row id="RowLayout01" style="align-items: baseline; flex-grow: 0; flex-shrink: 0">
-                    <davinci-value-display id="VD_Title" class="myCustomLabel_CSK_Module_DateTime" value="DateTime">
-                    </davinci-value-display>
+                    <h1 id="Heading_Title" class="myCustomLabel_CSK_Module_DateTime">
+                        DateTime
+                    </h1>
                     <davinci-value-display id="VD_Version">
-                        <crown-edpws-binding property="value" name="CSK_DateTime/OnNewStatusModuleVersion"
-                            update-on-resume>
-                        </crown-edpws-binding>
+                        <crown-on property="value" crown-event="CSK_DateTime/OnNewStatusModuleVersion">
+                        </crown-on>
                     </davinci-value-display>
                 </layout-row>
             </layout-column>
@@ -50,9 +50,9 @@
                                         <layout-row id="RowLayout34" class="myCustomMarginTop7PX_CSK_Module_DateTime"
                                             style="justify-content: center; align-items: center">
                                             <davinci-button id="B_LoadConfig" class="myCustomButton_CSK_Module_DateTime"
-                                                type="outline" icon-position="append"
-                                                title="Load configured parameters from CSK_PersistentData module."
-                                                icon="action/history">
+                                                type="outline"
+                                                title="Load configured parameters from CSK_PersistentData module.">
+                                                <davinci-icon icon="action/history"></davinci-icon>
                                                 <span></span>
                                                 <crown-binding event="submit" name="CSK_DateTime/loadParameters"
                                                     auto-commit>
@@ -63,9 +63,9 @@
                                                 </crown-edpws-binding>
                                             </davinci-button>
                                             <davinci-button id="B_SaveConfig" class="myCustomButton_CSK_Module_DateTime"
-                                                type="outline" icon-position="append"
-                                                title="Save current configured parameters of this module within CSK_PersistentData module."
-                                                icon="content/save">
+                                                type="outline"
+                                                title="Save current configured parameters of this module within CSK_PersistentData module.">
+                                                <davinci-icon icon="content/save"></davinci-icon>
                                                 <span></span>
                                                 <crown-binding event="submit" name="CSK_DateTime/sendParameters"
                                                     auto-commit>
@@ -184,19 +184,16 @@
                                     </layout-column>
                                     <layout-column id="ColumnLayout22" style="align-items: flex-end; flex-grow: 2">
                                         <davinci-value-display id="VD_LocalTimeValue">
-                                            <crown-edpws-binding property="value" name="CSK_DateTime/OnNewLocalTime"
-                                                update-on-resume>
-                                            </crown-edpws-binding>
+                                            <crown-on property="value" crown-event="CSK_DateTime/OnNewLocalTime">
+                                            </crown-on>
                                         </davinci-value-display>
                                         <davinci-value-display id="VD_UtcTimeValue">
-                                            <crown-edpws-binding property="value" name="CSK_DateTime/OnNewUTCTime"
-                                                update-on-resume>
-                                            </crown-edpws-binding>
+                                            <crown-on property="value" crown-event="CSK_DateTime/OnNewUTCTime">
+                                            </crown-on>
                                         </davinci-value-display>
                                         <davinci-value-display id="VD_DateTimeValue">
-                                            <crown-edpws-binding property="value" name="CSK_DateTime/OnNewDateTime"
-                                                update-on-resume>
-                                            </crown-edpws-binding>
+                                            <crown-on property="value" crown-event="CSK_DateTime/OnNewDateTime">
+                                            </crown-on>
                                         </davinci-value-display>
                                     </layout-column>
                                     <layout-column id="ColumnLayout24" style="align-items: flex-end">
@@ -209,416 +206,570 @@
                         style="align-items: stretch">
                         <stacked-view id="SV_Login1">
                             <stacked-pane id="SP_LoggedIn1" value="true">
-                                <davinci-tabs id="Tabs_ManualNTPTimezone" type="modern">
-                                    <davinci-tab id="Tab_General" class="myCustomMarginLeft7PX_CSK_Module_DateTime"
-                                        icon="action/settings" title="General">
-                                        <layout-row id="RowLayout26">
-                                            <layout-column id="ColumnLayout29" class="myCustomFrame_CSK_Module_DateTime"
-                                                style="align-items: stretch">
-                                                <davinci-value-display id="VD_General"
-                                                    class="myCustomFrameLabel_CSK_Module_DateTime" label="General"
-                                                    style="align-self: flex-start">
-                                                </davinci-value-display>
-                                                <davinci-drop-down id="DD_SourceSystemTime"
-                                                    title="Set time source for system time" label="Time source">
-                                                    <davinci-option id="Option1" value="NTP">
-                                                        <span>NTP</span>
-                                                    </davinci-option>
-                                                    <davinci-option id="Option2" value="MANUAL">
-                                                        <span>MANUAL</span>
-                                                    </davinci-option>
-                                                    <crown-edpws-binding property="value"
-                                                        name="CSK_DateTime/OnNewStatusSystemTimeSource"
-                                                        update-on-resume>
-                                                    </crown-edpws-binding>
-                                                    <crown-binding event="change"
-                                                        name="CSK_DateTime/setSystemTimeSource" path="param/args/source"
-                                                        auto-commit>
-                                                    </crown-binding>
-                                                </davinci-drop-down>
-                                                <layout-row id="RowLayout21"
-                                                    class="myCustomSpacerVert10_CSK_Module_DateTime">
-                                                </layout-row>
-                                            </layout-column>
-                                        </layout-row>
-                                    </davinci-tab>
-                                    <davinci-tab id="Tab_Manual" class="myCustomMarginLeft7PX_CSK_Module_DateTime"
-                                        icon="device/access_time" title="Manual">
-                                        <layout-row id="RowLayout9">
-                                            <layout-column id="ColumnLayout15" class="myCustomFrame_CSK_Module_DateTime"
-                                                style="align-items: stretch">
-                                                <davinci-value-display id="VD_ManualSetting"
-                                                    class="myCustomFrameLabel_CSK_Module_DateTime" label="Manual"
-                                                    style="align-self: flex-start">
-                                                </davinci-value-display>
-                                                <layout-row id="RowLayout4">
-                                                    <layout-column id="ColumnLayout5" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_Year" value="Year">
-                                                        </davinci-value-display>
-                                                        <davinci-numeric-field id="NF_Year" type="outline" min="1970"
-                                                            max="3000" ticks="1" group-separator=","
-                                                            decimal-separator="." format-pattern="0" title="Year">
-                                                            <crown-edpws-binding property="value"
-                                                                name="CSK_DateTime/OnNewYear" update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change" name="CSK_DateTime/setYear"
-                                                                path="param/args/year" auto-commit>
-                                                            </crown-binding>
-                                                        </davinci-numeric-field>
-                                                    </layout-column>
-                                                    <layout-column id="ColumnLayout6" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_Month" value="Month">
-                                                        </davinci-value-display>
-                                                        <davinci-numeric-field id="NF_Month" type="outline" min="1"
-                                                            max="12" ticks="1" group-separator="," decimal-separator="."
-                                                            format-pattern="0" title="Month">
-                                                            <crown-edpws-binding property="value"
-                                                                name="CSK_DateTime/OnNewMonth" update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change" name="CSK_DateTime/setMonth"
-                                                                path="param/args/month" auto-commit>
-                                                            </crown-binding>
-                                                        </davinci-numeric-field>
-                                                    </layout-column>
-                                                    <layout-column id="ColumnLayout7" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_Day" value="Day">
-                                                        </davinci-value-display>
-                                                        <davinci-numeric-field id="NF_Day" type="outline" min="1"
-                                                            max="31" ticks="1" group-separator="," decimal-separator="."
-                                                            format-pattern="0" title="Day">
-                                                            <crown-edpws-binding property="value"
-                                                                name="CSK_DateTime/OnNewDay" update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change" name="CSK_DateTime/setDay"
-                                                                path="param/args/day" auto-commit>
-                                                            </crown-binding>
-                                                        </davinci-numeric-field>
-                                                    </layout-column>
-                                                </layout-row>
-                                                <layout-row id="RowLayout5">
-                                                    <layout-column id="ColumnLayout8" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_Hour" value="Hour">
-                                                        </davinci-value-display>
-                                                        <davinci-numeric-field id="NF_Hour" type="outline" min="0"
-                                                            max="23" ticks="1" group-separator="," decimal-separator="."
-                                                            format-pattern="0" title="Hour">
-                                                            <crown-edpws-binding property="value"
-                                                                name="CSK_DateTime/OnNewHour" update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change" name="CSK_DateTime/setHour"
-                                                                path="param/args/hour" auto-commit>
-                                                            </crown-binding>
-                                                        </davinci-numeric-field>
-                                                    </layout-column>
-                                                    <layout-column id="ColumnLayout9" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_Minutes" value="Minutes">
-                                                        </davinci-value-display>
-                                                        <davinci-numeric-field id="NF_Minutes" type="outline" min="0"
-                                                            max="59" ticks="1" group-separator="," decimal-separator="."
-                                                            format-pattern="0" title="Minutes">
-                                                            <crown-edpws-binding property="value"
-                                                                name="CSK_DateTime/OnNewMinute" update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change" name="CSK_DateTime/setMinute"
-                                                                path="param/args/minute" auto-commit>
-                                                            </crown-binding>
-                                                        </davinci-numeric-field>
-                                                    </layout-column>
-                                                    <layout-column id="ColumnLayout10" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_Seconds" value="Seconds">
-                                                        </davinci-value-display>
-                                                        <davinci-numeric-field id="NF_Seconds" type="outline" min="0"
-                                                            max="59" ticks="1" group-separator="," decimal-separator="."
-                                                            format-pattern="0" title="Seconds">
-                                                            <crown-edpws-binding property="value"
-                                                                name="CSK_DateTime/OnNewSecond" update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change" name="CSK_DateTime/setSecond"
-                                                                path="param/args/second" auto-commit>
-                                                            </crown-binding>
-                                                        </davinci-numeric-field>
-                                                    </layout-column>
-                                                </layout-row>
-                                                <layout-row id="RowLayout3" style="justify-content: flex-end">
-                                                    <davinci-button id="B_SetTime"
-                                                        class="myCustomButton_CSK_Module_DateTime" type="outline"
-                                                        icon-position="append"
-                                                        title="Manually set local time by preset values"
-                                                        icon="navigation/check">
-                                                        <span></span>
-                                                        <crown-binding event="submit" name="CSK_DateTime/setTime"
-                                                            auto-commit>
-                                                        </crown-binding>
-                                                        <crown-edpws-binding property="disabled"
-                                                            name="CSK_DateTime/OnNewStatusNTPActive" update-on-resume>
-                                                        </crown-edpws-binding>
-                                                    </davinci-button>
-                                                </layout-row>
-                                            </layout-column>
-                                        </layout-row>
-                                    </davinci-tab>
-                                    <davinci-tab id="Tab_NTP" class="myCustomMarginLeft7PX_CSK_Module_DateTime"
-                                        icon="device/wifi_tethering" title="NTP">
-                                        <layout-row id="RowLayout7" style="align-items: center">
-                                            <layout-column id="ColumnLayout16" class="myCustomFrame_CSK_Module_DateTime"
-                                                style="align-items: stretch">
-                                                <davinci-value-display id="VD_NTPSetting"
-                                                    class="myCustomFrameLabel_CSK_Module_DateTime" value="" label="NTP"
-                                                    style="align-self: flex-start">
-                                                </davinci-value-display>
-                                                <stacked-view id="SV_NTPAvailable">
-                                                    <stacked-pane id="SP_NTPAvailable" value="true">
-                                                        <layout-row id="RowLayout28">
-                                                            <layout-column id="ColumnLayout34"
-                                                                style="align-items: stretch">
-                                                                <layout-row id="RowLayout10"
-                                                                    style="align-items: stretch">
-                                                                    <layout-column id="ColumnLayout12"
+                                <layout-row id="RowLayout19">
+                                    <layout-column id="ColumnLayout27" style="align-items: stretch">
+                                        <stacked-view id="SV_SetDateTimeZoneAvailable">
+                                            <stacked-pane id="SP_SetDateTimeZoneAvailable" value="true">
+                                                <layout-row id="RowLayout31">
+                                                    <layout-column id="ColumnLayout36" style="align-items: stretch">
+                                                        <davinci-tabs id="Tabs_ManualNTPTimezone" type="modern">
+                                                            <davinci-tab id="Tab_General"
+                                                                class="myCustomMarginLeft7PX_CSK_Module_DateTime"
+                                                                icon="action/settings" title="General">
+                                                                <layout-row id="RowLayout26">
+                                                                    <layout-column id="ColumnLayout29"
+                                                                        class="myCustomFrame_CSK_Module_DateTime"
                                                                         style="align-items: stretch">
-                                                                        <davinci-value-display id="VD_NTPServerIP"
-                                                                            value="Server IP">
+                                                                        <davinci-value-display id="VD_General"
+                                                                            class="myCustomFrameLabel_CSK_Module_DateTime"
+                                                                            label="General"
+                                                                            style="align-self: flex-start">
                                                                         </davinci-value-display>
-                                                                        <davinci-text-field id="TF_NTPServerIP"
-                                                                            type="text">
-                                                                            <crown-binding event="change"
-                                                                                name="CSK_DateTime/setNTPServerIP"
-                                                                                path="param/args/server" auto-commit>
-                                                                            </crown-binding>
+                                                                        <davinci-drop-down id="DD_SourceSystemTime"
+                                                                            title="Set time source for system time"
+                                                                            label="Time source">
+                                                                            <davinci-option id="Option1" value="NTP">
+                                                                                <span>NTP</span>
+                                                                            </davinci-option>
+                                                                            <davinci-option id="Option2" value="MANUAL">
+                                                                                <span>MANUAL</span>
+                                                                            </davinci-option>
                                                                             <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusNTPServerIP"
-                                                                                update-on-resume>
-                                                                            </crown-edpws-binding>
-                                                                        </davinci-text-field>
-                                                                    </layout-column>
-                                                                    <layout-column id="ColumnLayout13"
-                                                                        style="align-items: stretch">
-                                                                        <davinci-value-display id="VD_NTPServerPort"
-                                                                            value="Port">
-                                                                        </davinci-value-display>
-                                                                        <davinci-numeric-field id="NF_NTPServerPort"
-                                                                            type="outline" min="1" max="99999" ticks="1"
-                                                                            group-separator="," decimal-separator="."
-                                                                            format-pattern="0">
-                                                                            <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusNTPServerPort"
+                                                                                name="CSK_DateTime/OnNewStatusSystemTimeSource"
                                                                                 update-on-resume>
                                                                             </crown-edpws-binding>
                                                                             <crown-binding event="change"
-                                                                                name="CSK_DateTime/setNTPServerPort"
-                                                                                path="param/args/port" auto-commit>
+                                                                                name="CSK_DateTime/setSystemTimeSource"
+                                                                                path="param/args/source" auto-commit>
                                                                             </crown-binding>
-                                                                        </davinci-numeric-field>
+                                                                        </davinci-drop-down>
+                                                                        <layout-row id="RowLayout21"
+                                                                            class="myCustomSpacerVert10_CSK_Module_DateTime">
+                                                                        </layout-row>
                                                                     </layout-column>
-                                                                    <layout-column id="ColumnLayout20"
+                                                                </layout-row>
+                                                            </davinci-tab>
+                                                            <davinci-tab id="Tab_Manual"
+                                                                class="myCustomMarginLeft7PX_CSK_Module_DateTime"
+                                                                icon="device/access_time" title="Manual">
+                                                                <layout-row id="RowLayout9">
+                                                                    <layout-column id="ColumnLayout15"
+                                                                        class="myCustomFrame_CSK_Module_DateTime"
                                                                         style="align-items: stretch">
-                                                                        <davinci-value-display id="VD_NTPInterface"
-                                                                            value="Interface"
-                                                                            title="Set interface for NTP">
+                                                                        <davinci-value-display id="VD_ManualSetting"
+                                                                            class="myCustomFrameLabel_CSK_Module_DateTime"
+                                                                            label="Manual"
+                                                                            style="align-self: flex-start">
                                                                         </davinci-value-display>
-                                                                        <davinci-drop-down id="DD_NTPInterface"
-                                                                            title="Set interface for NTP">
+                                                                        <layout-row id="RowLayout4">
+                                                                            <layout-column id="ColumnLayout5"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Year"
+                                                                                    value="Year">
+                                                                                </davinci-value-display>
+                                                                                <davinci-numeric-field id="NF_Year"
+                                                                                    type="outline" min="1970" max="3000"
+                                                                                    ticks="1" group-separator=","
+                                                                                    decimal-separator="."
+                                                                                    format-pattern="0" title="Year">
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_DateTime/OnNewYear"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_DateTime/setYear"
+                                                                                        path="param/args/year"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-numeric-field>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout6"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Month"
+                                                                                    value="Month">
+                                                                                </davinci-value-display>
+                                                                                <davinci-numeric-field id="NF_Month"
+                                                                                    type="outline" min="1" max="12"
+                                                                                    ticks="1" group-separator=","
+                                                                                    decimal-separator="."
+                                                                                    format-pattern="0" title="Month">
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_DateTime/OnNewMonth"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_DateTime/setMonth"
+                                                                                        path="param/args/month"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-numeric-field>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout7"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Day"
+                                                                                    value="Day">
+                                                                                </davinci-value-display>
+                                                                                <davinci-numeric-field id="NF_Day"
+                                                                                    type="outline" min="1" max="31"
+                                                                                    ticks="1" group-separator=","
+                                                                                    decimal-separator="."
+                                                                                    format-pattern="0" title="Day">
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_DateTime/OnNewDay"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_DateTime/setDay"
+                                                                                        path="param/args/day"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-numeric-field>
+                                                                            </layout-column>
+                                                                        </layout-row>
+                                                                        <layout-row id="RowLayout5">
+                                                                            <layout-column id="ColumnLayout8"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Hour"
+                                                                                    value="Hour">
+                                                                                </davinci-value-display>
+                                                                                <davinci-numeric-field id="NF_Hour"
+                                                                                    type="outline" min="0" max="23"
+                                                                                    ticks="1" group-separator=","
+                                                                                    decimal-separator="."
+                                                                                    format-pattern="0" title="Hour">
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_DateTime/OnNewHour"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_DateTime/setHour"
+                                                                                        path="param/args/hour"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-numeric-field>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout9"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Minutes"
+                                                                                    value="Minutes">
+                                                                                </davinci-value-display>
+                                                                                <davinci-numeric-field id="NF_Minutes"
+                                                                                    type="outline" min="0" max="59"
+                                                                                    ticks="1" group-separator=","
+                                                                                    decimal-separator="."
+                                                                                    format-pattern="0" title="Minutes">
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_DateTime/OnNewMinute"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_DateTime/setMinute"
+                                                                                        path="param/args/minute"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-numeric-field>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout10"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Seconds"
+                                                                                    value="Seconds">
+                                                                                </davinci-value-display>
+                                                                                <davinci-numeric-field id="NF_Seconds"
+                                                                                    type="outline" min="0" max="59"
+                                                                                    ticks="1" group-separator=","
+                                                                                    decimal-separator="."
+                                                                                    format-pattern="0" title="Seconds">
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_DateTime/OnNewSecond"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_DateTime/setSecond"
+                                                                                        path="param/args/second"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-numeric-field>
+                                                                            </layout-column>
+                                                                        </layout-row>
+                                                                        <layout-row id="RowLayout3"
+                                                                            style="justify-content: flex-end">
+                                                                            <davinci-button id="B_SetTime"
+                                                                                class="myCustomButton_CSK_Module_DateTime"
+                                                                                type="outline"
+                                                                                title="Manually set local time by preset values">
+                                                                                <davinci-icon icon="navigation/check">
+                                                                                </davinci-icon>
+                                                                                <span></span>
+                                                                                <crown-binding event="submit"
+                                                                                    name="CSK_DateTime/setTime"
+                                                                                    auto-commit>
+                                                                                </crown-binding>
+                                                                                <crown-edpws-binding property="disabled"
+                                                                                    name="CSK_DateTime/OnNewStatusNTPActive"
+                                                                                    update-on-resume>
+                                                                                </crown-edpws-binding>
+                                                                            </davinci-button>
+                                                                        </layout-row>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </davinci-tab>
+                                                            <davinci-tab id="Tab_NTP"
+                                                                class="myCustomMarginLeft7PX_CSK_Module_DateTime"
+                                                                icon="device/wifi_tethering" title="NTP">
+                                                                <layout-row id="RowLayout7" style="align-items: center">
+                                                                    <layout-column id="ColumnLayout16"
+                                                                        class="myCustomFrame_CSK_Module_DateTime"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-value-display id="VD_NTPSetting"
+                                                                            class="myCustomFrameLabel_CSK_Module_DateTime"
+                                                                            value="" label="NTP"
+                                                                            style="align-self: flex-start">
+                                                                        </davinci-value-display>
+                                                                        <stacked-view id="SV_NTPAvailable">
+                                                                            <stacked-pane id="SP_NTPAvailable"
+                                                                                value="true">
+                                                                                <layout-row id="RowLayout28">
+                                                                                    <layout-column id="ColumnLayout34"
+                                                                                        style="align-items: stretch">
+                                                                                        <layout-row id="RowLayout10"
+                                                                                            style="align-items: stretch">
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout12"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_NTPServerIP"
+                                                                                                    value="Server IP">
+                                                                                                </davinci-value-display>
+                                                                                                <davinci-text-field
+                                                                                                    id="TF_NTPServerIP"
+                                                                                                    type="text">
+                                                                                                    <crown-binding
+                                                                                                        event="change"
+                                                                                                        name="CSK_DateTime/setNTPServerIP"
+                                                                                                        path="param/args/server"
+                                                                                                        auto-commit>
+                                                                                                    </crown-binding>
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="value"
+                                                                                                        name="CSK_DateTime/OnNewStatusNTPServerIP"
+                                                                                                        update-on-resume>
+                                                                                                    </crown-edpws-binding>
+                                                                                                </davinci-text-field>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout13"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_NTPServerPort"
+                                                                                                    value="Port">
+                                                                                                </davinci-value-display>
+                                                                                                <davinci-numeric-field
+                                                                                                    id="NF_NTPServerPort"
+                                                                                                    type="outline"
+                                                                                                    min="1" max="99999"
+                                                                                                    ticks="1"
+                                                                                                    group-separator=","
+                                                                                                    decimal-separator="."
+                                                                                                    format-pattern="0">
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="value"
+                                                                                                        name="CSK_DateTime/OnNewStatusNTPServerPort"
+                                                                                                        update-on-resume>
+                                                                                                    </crown-edpws-binding>
+                                                                                                    <crown-binding
+                                                                                                        event="change"
+                                                                                                        name="CSK_DateTime/setNTPServerPort"
+                                                                                                        path="param/args/port"
+                                                                                                        auto-commit>
+                                                                                                    </crown-binding>
+                                                                                                </davinci-numeric-field>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout20"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_NTPInterface"
+                                                                                                    value="Interface"
+                                                                                                    title="Set interface for NTP">
+                                                                                                </davinci-value-display>
+                                                                                                <davinci-drop-down
+                                                                                                    id="DD_NTPInterface"
+                                                                                                    title="Set interface for NTP">
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="data"
+                                                                                                        name="CSK_DateTime/OnNewInterfaceList"
+                                                                                                        update-on-resume
+                                                                                                        converter="convertToList">
+                                                                                                    </crown-edpws-binding>
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="value"
+                                                                                                        name="CSK_DateTime/OnNewStatusNTPInterface"
+                                                                                                        update-on-resume>
+                                                                                                    </crown-edpws-binding>
+                                                                                                    <crown-binding
+                                                                                                        event="change"
+                                                                                                        name="CSK_DateTime/setNTPInterface"
+                                                                                                        path="param/args/interface"
+                                                                                                        auto-commit>
+                                                                                                    </crown-binding>
+                                                                                                </davinci-drop-down>
+                                                                                            </layout-column>
+                                                                                        </layout-row>
+                                                                                        <layout-row id="RowLayout11"
+                                                                                            style="align-items: stretch">
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout21"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_Timeout"
+                                                                                                    value="Timeout"
+                                                                                                    title="Set the NTP timeout">
+                                                                                                </davinci-value-display>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout17"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_ApplySystemTime"
+                                                                                                    value="Apply to system time"
+                                                                                                    title="Set if the timestamp received by NTP should be applied to the system time. + If set to false the NTP time is just printed to the log.">
+                                                                                                </davinci-value-display>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout19"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_PeriodicUpdate"
+                                                                                                    value="Periodic update"
+                                                                                                    title="Set periodic update of NTP">
+                                                                                                </davinci-value-display>
+                                                                                            </layout-column>
+                                                                                        </layout-row>
+                                                                                        <layout-row id="RowLayout13"
+                                                                                            style="align-items: center">
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout14"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-numeric-field
+                                                                                                    id="NF_Timeout"
+                                                                                                    type="outline"
+                                                                                                    min="1" max="60000"
+                                                                                                    ticks="1"
+                                                                                                    group-separator=","
+                                                                                                    decimal-separator="."
+                                                                                                    format-pattern="0"
+                                                                                                    title="Set the NTP timeout">
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="value"
+                                                                                                        name="CSK_DateTime/OnNewStatusNTPTimeout"
+                                                                                                        update-on-resume>
+                                                                                                    </crown-edpws-binding>
+                                                                                                    <crown-binding
+                                                                                                        event="change"
+                                                                                                        name="CSK_DateTime/setNTPTimeout"
+                                                                                                        path="param/args/timeout"
+                                                                                                        auto-commit>
+                                                                                                    </crown-binding>
+                                                                                                </davinci-numeric-field>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout26"
+                                                                                                style="align-items: stretch">
+                                                                                                <layout-row
+                                                                                                    id="RowLayout14"
+                                                                                                    style="justify-content: center">
+                                                                                                    <davinci-checkbox
+                                                                                                        id="CB_ApplySystemTime"
+                                                                                                        title="Set if the timestamp received by NTP should be applied to the system time. + If set to false the NTP time is just printed to the log.">
+                                                                                                        <span></span>
+                                                                                                        <crown-edpws-binding
+                                                                                                            property="checked"
+                                                                                                            name="CSK_DateTime/OnNewStatusNTPApplyEnabled"
+                                                                                                            update-on-resume>
+                                                                                                        </crown-edpws-binding>
+                                                                                                        <crown-binding
+                                                                                                            event="change"
+                                                                                                            name="CSK_DateTime/setNTPApplyEnabled"
+                                                                                                            path="param/args/status"
+                                                                                                            auto-commit>
+                                                                                                        </crown-binding>
+                                                                                                    </davinci-checkbox>
+                                                                                                </layout-row>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout18"
+                                                                                                style="align-items: stretch">
+                                                                                                <layout-row
+                                                                                                    id="RowLayout15"
+                                                                                                    style="justify-content: center">
+                                                                                                    <davinci-checkbox
+                                                                                                        id="CB_PeriodicUpdate"
+                                                                                                        title="Set periodic update of NTP">
+                                                                                                        <span></span>
+                                                                                                        <crown-edpws-binding
+                                                                                                            property="checked"
+                                                                                                            name="CSK_DateTime/OnNewStatusNTPPeriodicUpdateEnabled"
+                                                                                                            update-on-resume>
+                                                                                                        </crown-edpws-binding>
+                                                                                                        <crown-binding
+                                                                                                            event="change"
+                                                                                                            name="CSK_DateTime/setNTPPeriodicUpdate"
+                                                                                                            path="param/args/status"
+                                                                                                            auto-commit>
+                                                                                                        </crown-binding>
+                                                                                                    </davinci-checkbox>
+                                                                                                </layout-row>
+                                                                                            </layout-column>
+                                                                                        </layout-row>
+                                                                                        <layout-row id="RowLayout18"
+                                                                                            style="justify-content: flex-end">
+                                                                                            <davinci-button
+                                                                                                id="B_TriggerNTPRequest"
+                                                                                                class="myCustomButton_CSK_Module_DateTime"
+                                                                                                type="outline"
+                                                                                                title="Trigger manual NTP request">
+                                                                                                <davinci-icon
+                                                                                                    icon="navigation/refresh">
+                                                                                                </davinci-icon>
+                                                                                                <span></span>
+                                                                                                <crown-binding
+                                                                                                    event="submit"
+                                                                                                    name="CSK_DateTime/manualNTPRequest"
+                                                                                                    auto-commit>
+                                                                                                </crown-binding>
+                                                                                                <crown-edpws-binding
+                                                                                                    property="disabled"
+                                                                                                    name="CSK_DateTime/OnNewStatusNTPActive"
+                                                                                                    update-on-resume
+                                                                                                    converter="function(value) {return !value;}">
+                                                                                                </crown-edpws-binding>
+                                                                                            </davinci-button>
+                                                                                        </layout-row>
+                                                                                    </layout-column>
+                                                                                </layout-row>
+                                                                            </stacked-pane>
+                                                                            <stacked-pane id="SP_NTPNotAvailable"
+                                                                                value="false">
+                                                                                <layout-row id="RowLayout29">
+                                                                                    <layout-column id="ColumnLayout35"
+                                                                                        style="align-items: stretch">
+                                                                                        <davinci-callout
+                                                                                            id="Callout_NTPNotAvailable"
+                                                                                            type="info">
+                                                                                            <span>NTP feature not available on device</span>
+                                                                                        </davinci-callout>
+                                                                                        <layout-row id="RowLayout30"
+                                                                                            class="myCustomSpacerVert10_CSK_Module_DateTime">
+                                                                                        </layout-row>
+                                                                                    </layout-column>
+                                                                                </layout-row>
+                                                                            </stacked-pane>
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_DateTime/OnNewStatusNTPIsAvailable"
+                                                                                update-on-resume
+                                                                                converter="function(value) {return value.toString();}">
+                                                                            </crown-edpws-binding>
+                                                                        </stacked-view>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </davinci-tab>
+                                                            <davinci-tab id="Tab_Timezone"
+                                                                class="myCustomMarginLeft7PX_CSK_Module_DateTime"
+                                                                icon="content/flag" title="Time zone">
+                                                                <layout-row id="RowLayout8">
+                                                                    <layout-column id="ColumnLayout1"
+                                                                        class="myCustomFrame_CSK_Module_DateTime"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-value-display id="VD_Timezones"
+                                                                            class="myCustomFrameLabel_CSK_Module_DateTime"
+                                                                            label="Time zone"
+                                                                            style="align-self: flex-start">
+                                                                        </davinci-value-display>
+                                                                        <davinci-collapse id="Collapse_TimezoneInfo"
+                                                                            collapsed-title="Time zone info"
+                                                                            expanded-title="Hide">
+                                                                            <layout-row id="RowLayout12">
+                                                                                <layout-column id="ColumnLayout25"
+                                                                                    style="align-items: stretch">
+                                                                                    <davinci-callout
+                                                                                        id="Callout_ETC_Timezone"
+                                                                                        type="info">
+                                                                                        <span>
+												Be aware of the fact that 'Etc/GMT...' time zones are intentionally inverted.
+												</span>
+                                                                                    </davinci-callout>
+                                                                                    <davinci-callout id="Callout_NTP"
+                                                                                        type="info">
+                                                                                        <span>
+												Set time zone before getting time from NTP server.
+												</span>
+                                                                                    </davinci-callout>
+                                                                                </layout-column>
+                                                                            </layout-row>
+                                                                        </davinci-collapse>
+                                                                        <davinci-drop-down id="DD_Timezone"
+                                                                            label="Select time zone"
+                                                                            title="Set the time zone">
                                                                             <crown-edpws-binding property="data"
-                                                                                name="CSK_DateTime/OnNewInterfaceList"
+                                                                                name="CSK_DateTime/OnNewTimezoneList"
                                                                                 update-on-resume
                                                                                 converter="convertToList">
                                                                             </crown-edpws-binding>
                                                                             <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusNTPInterface"
+                                                                                name="CSK_DateTime/OnNewStatusTimezone"
                                                                                 update-on-resume>
                                                                             </crown-edpws-binding>
                                                                             <crown-binding event="change"
-                                                                                name="CSK_DateTime/setNTPInterface"
-                                                                                path="param/args/interface" auto-commit>
+                                                                                name="CSK_DateTime/setTimezone"
+                                                                                path="param/args/zone" auto-commit>
                                                                             </crown-binding>
                                                                         </davinci-drop-down>
-                                                                    </layout-column>
-                                                                </layout-row>
-                                                                <layout-row id="RowLayout11"
-                                                                    style="align-items: stretch">
-                                                                    <layout-column id="ColumnLayout21"
-                                                                        style="align-items: stretch">
-                                                                        <davinci-value-display id="VD_Timeout"
-                                                                            value="Timeout" title="Set the NTP timeout">
-                                                                        </davinci-value-display>
-                                                                    </layout-column>
-                                                                    <layout-column id="ColumnLayout17"
-                                                                        style="align-items: stretch">
-                                                                        <davinci-value-display id="VD_ApplySystemTime"
-                                                                            value="Apply to system time"
-                                                                            title="Set if the timestamp received by NTP should be applied to the system time. + If set to false the NTP time is just printed to the log.">
-                                                                        </davinci-value-display>
-                                                                    </layout-column>
-                                                                    <layout-column id="ColumnLayout19"
-                                                                        style="align-items: stretch">
-                                                                        <davinci-value-display id="VD_PeriodicUpdate"
-                                                                            value="Periodic update"
-                                                                            title="Set periodic update of NTP">
-                                                                        </davinci-value-display>
-                                                                    </layout-column>
-                                                                </layout-row>
-                                                                <layout-row id="RowLayout13"
-                                                                    style="align-items: center">
-                                                                    <layout-column id="ColumnLayout14"
-                                                                        style="align-items: stretch">
-                                                                        <davinci-numeric-field id="NF_Timeout"
-                                                                            type="outline" min="1" max="60000" ticks="1"
-                                                                            group-separator="," decimal-separator="."
-                                                                            format-pattern="0"
-                                                                            title="Set the NTP timeout">
+                                                                        <davinci-text-field id="TF_CustomTimezone"
+                                                                            type="text" label="Custom time zone">
                                                                             <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusNTPTimeout"
+                                                                                name="CSK_DateTime/OnNewStatusTimezone"
                                                                                 update-on-resume>
                                                                             </crown-edpws-binding>
                                                                             <crown-binding event="change"
-                                                                                name="CSK_DateTime/setNTPTimeout"
-                                                                                path="param/args/timeout" auto-commit>
+                                                                                name="CSK_DateTime/setCustomTimezoneViaUI"
+                                                                                path="param/args/zone" auto-commit>
                                                                             </crown-binding>
-                                                                        </davinci-numeric-field>
-                                                                    </layout-column>
-                                                                    <layout-column id="ColumnLayout26"
-                                                                        style="align-items: stretch">
-                                                                        <layout-row id="RowLayout14"
-                                                                            style="justify-content: center">
-                                                                            <davinci-checkbox id="CB_ApplySystemTime"
-                                                                                title="Set if the timestamp received by NTP should be applied to the system time. + If set to false the NTP time is just printed to the log.">
-                                                                                <span></span>
-                                                                                <crown-edpws-binding property="checked"
-                                                                                    name="CSK_DateTime/OnNewStatusNTPApplyEnabled"
-                                                                                    update-on-resume>
-                                                                                </crown-edpws-binding>
-                                                                                <crown-binding event="change"
-                                                                                    name="CSK_DateTime/setNTPApplyEnabled"
-                                                                                    path="param/args/status"
-                                                                                    auto-commit>
-                                                                                </crown-binding>
-                                                                            </davinci-checkbox>
-                                                                        </layout-row>
-                                                                    </layout-column>
-                                                                    <layout-column id="ColumnLayout18"
-                                                                        style="align-items: stretch">
-                                                                        <layout-row id="RowLayout15"
-                                                                            style="justify-content: center">
-                                                                            <davinci-checkbox id="CB_PeriodicUpdate"
-                                                                                title="Set periodic update of NTP">
-                                                                                <span></span>
-                                                                                <crown-edpws-binding property="checked"
-                                                                                    name="CSK_DateTime/OnNewStatusNTPPeriodicUpdateEnabled"
-                                                                                    update-on-resume>
-                                                                                </crown-edpws-binding>
-                                                                                <crown-binding event="change"
-                                                                                    name="CSK_DateTime/setNTPPeriodicUpdate"
-                                                                                    path="param/args/status"
-                                                                                    auto-commit>
-                                                                                </crown-binding>
-                                                                            </davinci-checkbox>
+                                                                        </davinci-text-field>
+                                                                        <davinci-value-display id="VD_TimezoneInfo">
+                                                                            <crown-on property="value"
+                                                                                crown-event="CSK_DateTime/OnNewStatusTimezoneInfo">
+                                                                            </crown-on>
+                                                                        </davinci-value-display>
+                                                                        <layout-row id="RowLayout25"
+                                                                            class="myCustomSpacerVert10_CSK_Module_DateTime">
                                                                         </layout-row>
                                                                     </layout-column>
                                                                 </layout-row>
-                                                                <layout-row id="RowLayout18"
-                                                                    style="justify-content: flex-end">
-                                                                    <davinci-button id="B_TriggerNTPRequest"
-                                                                        class="myCustomButton_CSK_Module_DateTime"
-                                                                        type="outline" icon-position="append"
-                                                                        title="Trigger manual NTP request"
-                                                                        icon="navigation/refresh">
-                                                                        <span></span>
-                                                                        <crown-binding event="submit"
-                                                                            name="CSK_DateTime/manualNTPRequest"
-                                                                            auto-commit>
-                                                                        </crown-binding>
-                                                                        <crown-edpws-binding property="disabled"
-                                                                            name="CSK_DateTime/OnNewStatusNTPActive"
-                                                                            update-on-resume
-                                                                            converter="function(value) {return !value;}">
-                                                                        </crown-edpws-binding>
-                                                                    </davinci-button>
-                                                                </layout-row>
-                                                            </layout-column>
-                                                        </layout-row>
-                                                    </stacked-pane>
-                                                    <stacked-pane id="SP_NTPNotAvailable" value="false">
-                                                        <layout-row id="RowLayout29">
-                                                            <layout-column id="ColumnLayout35"
-                                                                style="align-items: stretch">
-                                                                <davinci-callout id="Callout_NTPNotAvailable"
-                                                                    type="info">
-                                                                    <span>NTP feature not available on device</span>
-                                                                </davinci-callout>
-                                                                <layout-row id="RowLayout30"
-                                                                    class="myCustomSpacerVert10_CSK_Module_DateTime">
-                                                                </layout-row>
-                                                            </layout-column>
-                                                        </layout-row>
-                                                    </stacked-pane>
-                                                    <crown-edpws-binding property="value"
-                                                        name="CSK_DateTime/OnNewStatusNTPIsAvailable" update-on-resume
-                                                        converter="function(value) {return value.toString();}">
-                                                    </crown-edpws-binding>
-                                                </stacked-view>
-                                            </layout-column>
-                                        </layout-row>
-                                    </davinci-tab>
-                                    <davinci-tab id="Tab_Timezone" class="myCustomMarginLeft7PX_CSK_Module_DateTime"
-                                        icon="content/flag" title="Time zone">
-                                        <layout-row id="RowLayout8">
-                                            <layout-column id="ColumnLayout1" class="myCustomFrame_CSK_Module_DateTime"
-                                                style="align-items: stretch">
-                                                <davinci-value-display id="VD_Timezones"
-                                                    class="myCustomFrameLabel_CSK_Module_DateTime" label="Time zone"
-                                                    style="align-self: flex-start">
-                                                </davinci-value-display>
-                                                <davinci-collapse id="Collapse_TimezoneInfo"
-                                                    collapsed-title="Time zone info" expanded-title="Hide">
-                                                    <layout-row id="RowLayout12">
-                                                        <layout-column id="ColumnLayout25" style="align-items: stretch">
-                                                            <davinci-callout id="Callout_ETC_Timezone" type="info">
-                                                                <span>
-												Be aware of the fact that 'Etc/GMT...' time zones are intentionally inverted.
-												</span>
-                                                            </davinci-callout>
-                                                            <davinci-callout id="Callout_NTP" type="info">
-                                                                <span>
-												Set time zone before getting time from NTP server.
-												</span>
-                                                            </davinci-callout>
-                                                        </layout-column>
-                                                    </layout-row>
-                                                </davinci-collapse>
-                                                <davinci-drop-down id="DD_Timezone" label="Select time zone"
-                                                    title="Set the time zone">
-                                                    <crown-edpws-binding property="data"
-                                                        name="CSK_DateTime/OnNewTimezoneList" update-on-resume
-                                                        converter="convertToList">
-                                                    </crown-edpws-binding>
-                                                    <crown-edpws-binding property="value"
-                                                        name="CSK_DateTime/OnNewStatusTimezone" update-on-resume>
-                                                    </crown-edpws-binding>
-                                                    <crown-binding event="change" name="CSK_DateTime/setTimezone"
-                                                        path="param/args/zone" auto-commit>
-                                                    </crown-binding>
-                                                </davinci-drop-down>
-                                                <davinci-text-field id="TF_CustomTimezone" type="text"
-                                                    label="Custom time zone">
-                                                    <crown-edpws-binding property="value"
-                                                        name="CSK_DateTime/OnNewStatusTimezone" update-on-resume>
-                                                    </crown-edpws-binding>
-                                                    <crown-binding event="change"
-                                                        name="CSK_DateTime/setCustomTimezoneViaUI"
-                                                        path="param/args/zone" auto-commit>
-                                                    </crown-binding>
-                                                </davinci-text-field>
-                                                <davinci-value-display id="VD_TimezoneInfo">
-                                                    <crown-edpws-binding property="value"
-                                                        name="CSK_DateTime/OnNewStatusTimezoneInfo" update-on-resume>
-                                                    </crown-edpws-binding>
-                                                </davinci-value-display>
-                                                <layout-row id="RowLayout25"
-                                                    class="myCustomSpacerVert10_CSK_Module_DateTime">
+                                                            </davinci-tab>
+                                                        </davinci-tabs>
+                                                    </layout-column>
                                                 </layout-row>
-                                            </layout-column>
-                                        </layout-row>
-                                    </davinci-tab>
-                                </davinci-tabs>
+                                            </stacked-pane>
+                                            <stacked-pane id="SP_SetDateTimeZoneNotAvailable" value="false">
+                                                <davinci-callout id="Callout2" type="info">
+                                                    <span>
+												Features to set DateTime parameters via app are not available on this device.
+												</span>
+                                                </davinci-callout>
+                                            </stacked-pane>
+                                            <crown-edpws-binding property="value"
+                                                name="CSK_DateTime/OnNewStatusSetDateTimeZoneIsAvailable"
+                                                update-on-resume converter="function(value) {return value.toString();}">
+                                            </crown-edpws-binding>
+                                        </stacked-view>
+                                    </layout-column>
+                                </layout-row>
                             </stacked-pane>
                             <stacked-pane id="SP_NotLoggedIn1" value="false">
                                 <davinci-callout id="Callout1" type="info">
