@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Release 3.3.1
+
+### Bugfix
+- Updated legacy UI bindings
+
 ## Release 3.3.0
 
 ### Improvements

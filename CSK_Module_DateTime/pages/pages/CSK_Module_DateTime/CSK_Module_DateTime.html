@@ -32,16 +32,15 @@
                             <layout-column id="ColumnLayout73" style="align-items: stretch; flex-grow: 2">
                                 <davinci-text-field id="TF_ParameterName" type="text"
                                     title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
-                                    <crown-edpws-binding property="value" name="CSK_DateTime/OnNewParameterName"
-                                        update-on-resume>
-                                    </crown-edpws-binding>
-                                    <crown-binding event="change" name="CSK_DateTime/setParameterName"
-                                        path="param/args/name" auto-commit>
-                                    </crown-binding>
-                                    <crown-edpws-binding property="disabled"
-                                        name="CSK_DateTime/OnPersistentDataModuleAvailable" update-on-resume
+                                    <crown-on property="value" crown-event="CSK_DateTime/OnNewParameterName">
+                                    </crown-on>
+                                    <crown-set event="change" crown-function="CSK_DateTime/setParameterName"
+                                        protocol="crownMSGPACK" crown-path="name">
+                                    </crown-set>
+                                    <crown-on property="disabled"
+                                        crown-event="CSK_DateTime/OnPersistentDataModuleAvailable"
                                         converter="function(value) {return !value;}">
-                                    </crown-edpws-binding>
+                                    </crown-on>
                                 </davinci-text-field>
                             </layout-column>
                             <layout-column id="Column_PersistentDatax" style="align-items: stretch">
@@ -54,26 +53,26 @@
                                                 title="Load configured parameters from CSK_PersistentData module.">
                                                 <davinci-icon icon="action/history"></davinci-icon>
                                                 <span></span>
-                                                <crown-binding event="submit" name="CSK_DateTime/loadParameters"
-                                                    auto-commit>
-                                                </crown-binding>
-                                                <crown-edpws-binding property="disabled"
-                                                    name="CSK_DateTime/OnPersistentDataModuleAvailable" update-on-resume
+                                                <crown-set event="submit" crown-function="CSK_DateTime/loadParameters"
+                                                    protocol="crownMSGPACK">
+                                                </crown-set>
+                                                <crown-on property="disabled"
+                                                    crown-event="CSK_DateTime/OnPersistentDataModuleAvailable"
                                                     converter="function(value) {return !value;}">
-                                                </crown-edpws-binding>
+                                                </crown-on>
                                             </davinci-button>
                                             <davinci-button id="B_SaveConfig" class="myCustomButton_CSK_Module_DateTime"
                                                 type="outline"
                                                 title="Save current configured parameters of this module within CSK_PersistentData module.">
                                                 <davinci-icon icon="content/save"></davinci-icon>
                                                 <span></span>
-                                                <crown-binding event="submit" name="CSK_DateTime/sendParameters"
-                                                    auto-commit>
-                                                </crown-binding>
-                                                <crown-edpws-binding property="disabled"
-                                                    name="CSK_DateTime/OnPersistentDataModuleAvailable" update-on-resume
+                                                <crown-set event="submit" crown-function="CSK_DateTime/sendParameters"
+                                                    protocol="crownMSGPACK">
+                                                </crown-set>
+                                                <crown-on property="disabled"
+                                                    crown-event="CSK_DateTime/OnPersistentDataModuleAvailable"
                                                     converter="function(value) {return !value;}">
-                                                </crown-edpws-binding>
+                                                </crown-on>
                                             </davinci-button>
                                         </layout-row>
                                     </layout-column>
@@ -101,19 +100,17 @@
                                                         <davinci-checkbox id="CB_LoadConfig"
                                                             title="Load configured parameters from CSK_PersistentData on app start.">
                                                             <span></span>
-                                                            <crown-edpws-binding property="checked"
-                                                                name="CSK_DateTime/OnNewStatusLoadParameterOnReboot"
-                                                                update-on-resume>
-                                                            </crown-edpws-binding>
-                                                            <crown-edpws-binding property="disabled"
-                                                                name="CSK_DateTime/OnPersistentDataModuleAvailable"
-                                                                update-on-resume
+                                                            <crown-on property="checked"
+                                                                crown-event="CSK_DateTime/OnNewStatusLoadParameterOnReboot">
+                                                            </crown-on>
+                                                            <crown-on property="disabled"
+                                                                crown-event="CSK_DateTime/OnPersistentDataModuleAvailable"
                                                                 converter="function(value) {return !value;}">
-                                                            </crown-edpws-binding>
-                                                            <crown-binding event="change"
-                                                                name="CSK_DateTime/setLoadOnReboot"
-                                                                path="param/args/status" auto-commit>
-                                                            </crown-binding>
+                                                            </crown-on>
+                                                            <crown-set event="change"
+                                                                crown-function="CSK_DateTime/setLoadOnReboot"
+                                                                protocol="crownMSGPACK" crown-path="status">
+                                                            </crown-set>
                                                         </davinci-checkbox>
                                                     </layout-row>
                                                 </layout-column>
@@ -162,9 +159,8 @@
                                         <davinci-status-indicator id="SI_TimeWasSet"
                                             title="Status if time was set since bootUp manually or via NTP">
                                             <span></span>
-                                            <crown-edpws-binding property="status"
-                                                name="CSK_DateTime/OnNewStatusIsTimeSet" update-on-resume>
-                                            </crown-edpws-binding>
+                                            <crown-on property="status" crown-event="CSK_DateTime/OnNewStatusIsTimeSet">
+                                            </crown-on>
                                         </davinci-status-indicator>
                                     </layout-column>
                                     <layout-column id="ColumnLayout30" style="align-items: stretch">
@@ -234,14 +230,14 @@
                                                                             <davinci-option id="Option2" value="MANUAL">
                                                                                 <span>MANUAL</span>
                                                                             </davinci-option>
-                                                                            <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusSystemTimeSource"
-                                                                                update-on-resume>
-                                                                            </crown-edpws-binding>
-                                                                            <crown-binding event="change"
-                                                                                name="CSK_DateTime/setSystemTimeSource"
-                                                                                path="param/args/source" auto-commit>
-                                                                            </crown-binding>
+                                                                            <crown-on property="value"
+                                                                                crown-event="CSK_DateTime/OnNewStatusSystemTimeSource">
+                                                                            </crown-on>
+                                                                            <crown-set event="change"
+                                                                                crown-function="CSK_DateTime/setSystemTimeSource"
+                                                                                protocol="crownMSGPACK"
+                                                                                crown-path="source">
+                                                                            </crown-set>
                                                                         </davinci-drop-down>
                                                                         <layout-row id="RowLayout21"
                                                                             class="myCustomSpacerVert10_CSK_Module_DateTime">
@@ -272,16 +268,14 @@
                                                                                     ticks="1" group-separator=","
                                                                                     decimal-separator="."
                                                                                     format-pattern="0" title="Year">
-                                                                                    <crown-edpws-binding
-                                                                                        property="value"
-                                                                                        name="CSK_DateTime/OnNewYear"
-                                                                                        update-on-resume>
-                                                                                    </crown-edpws-binding>
-                                                                                    <crown-binding event="change"
-                                                                                        name="CSK_DateTime/setYear"
-                                                                                        path="param/args/year"
-                                                                                        auto-commit>
-                                                                                    </crown-binding>
+                                                                                    <crown-on property="value"
+                                                                                        crown-event="CSK_DateTime/OnNewYear">
+                                                                                    </crown-on>
+                                                                                    <crown-set event="change"
+                                                                                        crown-function="CSK_DateTime/setYear"
+                                                                                        protocol="crownMSGPACK"
+                                                                                        crown-path="year">
+                                                                                    </crown-set>
                                                                                 </davinci-numeric-field>
                                                                             </layout-column>
                                                                             <layout-column id="ColumnLayout6"
@@ -294,16 +288,14 @@
                                                                                     ticks="1" group-separator=","
                                                                                     decimal-separator="."
                                                                                     format-pattern="0" title="Month">
-                                                                                    <crown-edpws-binding
-                                                                                        property="value"
-                                                                                        name="CSK_DateTime/OnNewMonth"
-                                                                                        update-on-resume>
-                                                                                    </crown-edpws-binding>
-                                                                                    <crown-binding event="change"
-                                                                                        name="CSK_DateTime/setMonth"
-                                                                                        path="param/args/month"
-                                                                                        auto-commit>
-                                                                                    </crown-binding>
+                                                                                    <crown-on property="value"
+                                                                                        crown-event="CSK_DateTime/OnNewMonth">
+                                                                                    </crown-on>
+                                                                                    <crown-set event="change"
+                                                                                        crown-function="CSK_DateTime/setMonth"
+                                                                                        protocol="crownMSGPACK"
+                                                                                        crown-path="month">
+                                                                                    </crown-set>
                                                                                 </davinci-numeric-field>
                                                                             </layout-column>
                                                                             <layout-column id="ColumnLayout7"
@@ -316,16 +308,14 @@
                                                                                     ticks="1" group-separator=","
                                                                                     decimal-separator="."
                                                                                     format-pattern="0" title="Day">
-                                                                                    <crown-edpws-binding
-                                                                                        property="value"
-                                                                                        name="CSK_DateTime/OnNewDay"
-                                                                                        update-on-resume>
-                                                                                    </crown-edpws-binding>
-                                                                                    <crown-binding event="change"
-                                                                                        name="CSK_DateTime/setDay"
-                                                                                        path="param/args/day"
-                                                                                        auto-commit>
-                                                                                    </crown-binding>
+                                                                                    <crown-on property="value"
+                                                                                        crown-event="CSK_DateTime/OnNewDay">
+                                                                                    </crown-on>
+                                                                                    <crown-set event="change"
+                                                                                        crown-function="CSK_DateTime/setDay"
+                                                                                        protocol="crownMSGPACK"
+                                                                                        crown-path="day">
+                                                                                    </crown-set>
                                                                                 </davinci-numeric-field>
                                                                             </layout-column>
                                                                         </layout-row>
@@ -340,16 +330,14 @@
                                                                                     ticks="1" group-separator=","
                                                                                     decimal-separator="."
                                                                                     format-pattern="0" title="Hour">
-                                                                                    <crown-edpws-binding
-                                                                                        property="value"
-                                                                                        name="CSK_DateTime/OnNewHour"
-                                                                                        update-on-resume>
-                                                                                    </crown-edpws-binding>
-                                                                                    <crown-binding event="change"
-                                                                                        name="CSK_DateTime/setHour"
-                                                                                        path="param/args/hour"
-                                                                                        auto-commit>
-                                                                                    </crown-binding>
+                                                                                    <crown-on property="value"
+                                                                                        crown-event="CSK_DateTime/OnNewHour">
+                                                                                    </crown-on>
+                                                                                    <crown-set event="change"
+                                                                                        crown-function="CSK_DateTime/setHour"
+                                                                                        protocol="crownMSGPACK"
+                                                                                        crown-path="hour">
+                                                                                    </crown-set>
                                                                                 </davinci-numeric-field>
                                                                             </layout-column>
                                                                             <layout-column id="ColumnLayout9"
@@ -362,16 +350,14 @@
                                                                                     ticks="1" group-separator=","
                                                                                     decimal-separator="."
                                                                                     format-pattern="0" title="Minutes">
-                                                                                    <crown-edpws-binding
-                                                                                        property="value"
-                                                                                        name="CSK_DateTime/OnNewMinute"
-                                                                                        update-on-resume>
-                                                                                    </crown-edpws-binding>
-                                                                                    <crown-binding event="change"
-                                                                                        name="CSK_DateTime/setMinute"
-                                                                                        path="param/args/minute"
-                                                                                        auto-commit>
-                                                                                    </crown-binding>
+                                                                                    <crown-on property="value"
+                                                                                        crown-event="CSK_DateTime/OnNewMinute">
+                                                                                    </crown-on>
+                                                                                    <crown-set event="change"
+                                                                                        crown-function="CSK_DateTime/setMinute"
+                                                                                        protocol="crownMSGPACK"
+                                                                                        crown-path="minute">
+                                                                                    </crown-set>
                                                                                 </davinci-numeric-field>
                                                                             </layout-column>
                                                                             <layout-column id="ColumnLayout10"
@@ -384,16 +370,14 @@
                                                                                     ticks="1" group-separator=","
                                                                                     decimal-separator="."
                                                                                     format-pattern="0" title="Seconds">
-                                                                                    <crown-edpws-binding
-                                                                                        property="value"
-                                                                                        name="CSK_DateTime/OnNewSecond"
-                                                                                        update-on-resume>
-                                                                                    </crown-edpws-binding>
-                                                                                    <crown-binding event="change"
-                                                                                        name="CSK_DateTime/setSecond"
-                                                                                        path="param/args/second"
-                                                                                        auto-commit>
-                                                                                    </crown-binding>
+                                                                                    <crown-on property="value"
+                                                                                        crown-event="CSK_DateTime/OnNewSecond">
+                                                                                    </crown-on>
+                                                                                    <crown-set event="change"
+                                                                                        crown-function="CSK_DateTime/setSecond"
+                                                                                        protocol="crownMSGPACK"
+                                                                                        crown-path="second">
+                                                                                    </crown-set>
                                                                                 </davinci-numeric-field>
                                                                             </layout-column>
                                                                         </layout-row>
@@ -406,14 +390,13 @@
                                                                                 <davinci-icon icon="navigation/check">
                                                                                 </davinci-icon>
                                                                                 <span></span>
-                                                                                <crown-binding event="submit"
-                                                                                    name="CSK_DateTime/setTime"
-                                                                                    auto-commit>
-                                                                                </crown-binding>
-                                                                                <crown-edpws-binding property="disabled"
-                                                                                    name="CSK_DateTime/OnNewStatusNTPActive"
-                                                                                    update-on-resume>
-                                                                                </crown-edpws-binding>
+                                                                                <crown-set event="submit"
+                                                                                    crown-function="CSK_DateTime/setTime"
+                                                                                    protocol="crownMSGPACK">
+                                                                                </crown-set>
+                                                                                <crown-on property="disabled"
+                                                                                    crown-event="CSK_DateTime/OnNewStatusNTPActive">
+                                                                                </crown-on>
                                                                             </davinci-button>
                                                                         </layout-row>
                                                                     </layout-column>
@@ -449,17 +432,16 @@
                                                                                                 <davinci-text-field
                                                                                                     id="TF_NTPServerIP"
                                                                                                     type="text">
-                                                                                                    <crown-binding
+                                                                                                    <crown-set
                                                                                                         event="change"
-                                                                                                        name="CSK_DateTime/setNTPServerIP"
-                                                                                                        path="param/args/server"
-                                                                                                        auto-commit>
-                                                                                                    </crown-binding>
-                                                                                                    <crown-edpws-binding
+                                                                                                        crown-function="CSK_DateTime/setNTPServerIP"
+                                                                                                        protocol="crownMSGPACK"
+                                                                                                        crown-path="server">
+                                                                                                    </crown-set>
+                                                                                                    <crown-on
                                                                                                         property="value"
-                                                                                                        name="CSK_DateTime/OnNewStatusNTPServerIP"
-                                                                                                        update-on-resume>
-                                                                                                    </crown-edpws-binding>
+                                                                                                        crown-event="CSK_DateTime/OnNewStatusNTPServerIP">
+                                                                                                    </crown-on>
                                                                                                 </davinci-text-field>
                                                                                             </layout-column>
                                                                                             <layout-column
@@ -477,17 +459,16 @@
                                                                                                     group-separator=","
                                                                                                     decimal-separator="."
                                                                                                     format-pattern="0">
-                                                                                                    <crown-edpws-binding
+                                                                                                    <crown-on
                                                                                                         property="value"
-                                                                                                        name="CSK_DateTime/OnNewStatusNTPServerPort"
-                                                                                                        update-on-resume>
-                                                                                                    </crown-edpws-binding>
-                                                                                                    <crown-binding
+                                                                                                        crown-event="CSK_DateTime/OnNewStatusNTPServerPort">
+                                                                                                    </crown-on>
+                                                                                                    <crown-set
                                                                                                         event="change"
-                                                                                                        name="CSK_DateTime/setNTPServerPort"
-                                                                                                        path="param/args/port"
-                                                                                                        auto-commit>
-                                                                                                    </crown-binding>
+                                                                                                        crown-function="CSK_DateTime/setNTPServerPort"
+                                                                                                        protocol="crownMSGPACK"
+                                                                                                        crown-path="port">
+                                                                                                    </crown-set>
                                                                                                 </davinci-numeric-field>
                                                                                             </layout-column>
                                                                                             <layout-column
@@ -501,23 +482,21 @@
                                                                                                 <davinci-drop-down
                                                                                                     id="DD_NTPInterface"
                                                                                                     title="Set interface for NTP">
-                                                                                                    <crown-edpws-binding
+                                                                                                    <crown-on
                                                                                                         property="data"
-                                                                                                        name="CSK_DateTime/OnNewInterfaceList"
-                                                                                                        update-on-resume
+                                                                                                        crown-event="CSK_DateTime/OnNewInterfaceList"
                                                                                                         converter="convertToList">
-                                                                                                    </crown-edpws-binding>
-                                                                                                    <crown-edpws-binding
+                                                                                                    </crown-on>
+                                                                                                    <crown-on
                                                                                                         property="value"
-                                                                                                        name="CSK_DateTime/OnNewStatusNTPInterface"
-                                                                                                        update-on-resume>
-                                                                                                    </crown-edpws-binding>
-                                                                                                    <crown-binding
+                                                                                                        crown-event="CSK_DateTime/OnNewStatusNTPInterface">
+                                                                                                    </crown-on>
+                                                                                                    <crown-set
                                                                                                         event="change"
-                                                                                                        name="CSK_DateTime/setNTPInterface"
-                                                                                                        path="param/args/interface"
-                                                                                                        auto-commit>
-                                                                                                    </crown-binding>
+                                                                                                        crown-function="CSK_DateTime/setNTPInterface"
+                                                                                                        protocol="crownMSGPACK"
+                                                                                                        crown-path="interface">
+                                                                                                    </crown-set>
                                                                                                 </davinci-drop-down>
                                                                                             </layout-column>
                                                                                         </layout-row>
@@ -565,17 +544,16 @@
                                                                                                     decimal-separator="."
                                                                                                     format-pattern="0"
                                                                                                     title="Set the NTP timeout">
-                                                                                                    <crown-edpws-binding
+                                                                                                    <crown-on
                                                                                                         property="value"
-                                                                                                        name="CSK_DateTime/OnNewStatusNTPTimeout"
-                                                                                                        update-on-resume>
-                                                                                                    </crown-edpws-binding>
-                                                                                                    <crown-binding
+                                                                                                        crown-event="CSK_DateTime/OnNewStatusNTPTimeout">
+                                                                                                    </crown-on>
+                                                                                                    <crown-set
                                                                                                         event="change"
-                                                                                                        name="CSK_DateTime/setNTPTimeout"
-                                                                                                        path="param/args/timeout"
-                                                                                                        auto-commit>
-                                                                                                    </crown-binding>
+                                                                                                        crown-function="CSK_DateTime/setNTPTimeout"
+                                                                                                        protocol="crownMSGPACK"
+                                                                                                        crown-path="timeout">
+                                                                                                    </crown-set>
                                                                                                 </davinci-numeric-field>
                                                                                             </layout-column>
                                                                                             <layout-column
@@ -588,17 +566,16 @@
                                                                                                         id="CB_ApplySystemTime"
                                                                                                         title="Set if the timestamp received by NTP should be applied to the system time. + If set to false the NTP time is just printed to the log.">
                                                                                                         <span></span>
-                                                                                                        <crown-edpws-binding
+                                                                                                        <crown-on
                                                                                                             property="checked"
-                                                                                                            name="CSK_DateTime/OnNewStatusNTPApplyEnabled"
-                                                                                                            update-on-resume>
-                                                                                                        </crown-edpws-binding>
-                                                                                                        <crown-binding
+                                                                                                            crown-event="CSK_DateTime/OnNewStatusNTPApplyEnabled">
+                                                                                                        </crown-on>
+                                                                                                        <crown-set
                                                                                                             event="change"
-                                                                                                            name="CSK_DateTime/setNTPApplyEnabled"
-                                                                                                            path="param/args/status"
-                                                                                                            auto-commit>
-                                                                                                        </crown-binding>
+                                                                                                            crown-function="CSK_DateTime/setNTPApplyEnabled"
+                                                                                                            protocol="crownMSGPACK"
+                                                                                                            crown-path="status">
+                                                                                                        </crown-set>
                                                                                                     </davinci-checkbox>
                                                                                                 </layout-row>
                                                                                             </layout-column>
@@ -612,17 +589,16 @@
                                                                                                         id="CB_PeriodicUpdate"
                                                                                                         title="Set periodic update of NTP">
                                                                                                         <span></span>
-                                                                                                        <crown-edpws-binding
+                                                                                                        <crown-on
                                                                                                             property="checked"
-                                                                                                            name="CSK_DateTime/OnNewStatusNTPPeriodicUpdateEnabled"
-                                                                                                            update-on-resume>
-                                                                                                        </crown-edpws-binding>
-                                                                                                        <crown-binding
+                                                                                                            crown-event="CSK_DateTime/OnNewStatusNTPPeriodicUpdateEnabled">
+                                                                                                        </crown-on>
+                                                                                                        <crown-set
                                                                                                             event="change"
-                                                                                                            name="CSK_DateTime/setNTPPeriodicUpdate"
-                                                                                                            path="param/args/status"
-                                                                                                            auto-commit>
-                                                                                                        </crown-binding>
+                                                                                                            crown-function="CSK_DateTime/setNTPPeriodicUpdate"
+                                                                                                            protocol="crownMSGPACK"
+                                                                                                            crown-path="status">
+                                                                                                        </crown-set>
                                                                                                     </davinci-checkbox>
                                                                                                 </layout-row>
                                                                                             </layout-column>
@@ -638,17 +614,16 @@
                                                                                                     icon="navigation/refresh">
                                                                                                 </davinci-icon>
                                                                                                 <span></span>
-                                                                                                <crown-binding
+                                                                                                <crown-set
                                                                                                     event="submit"
-                                                                                                    name="CSK_DateTime/manualNTPRequest"
-                                                                                                    auto-commit>
-                                                                                                </crown-binding>
-                                                                                                <crown-edpws-binding
+                                                                                                    crown-function="CSK_DateTime/manualNTPRequest"
+                                                                                                    protocol="crownMSGPACK">
+                                                                                                </crown-set>
+                                                                                                <crown-on
                                                                                                     property="disabled"
-                                                                                                    name="CSK_DateTime/OnNewStatusNTPActive"
-                                                                                                    update-on-resume
+                                                                                                    crown-event="CSK_DateTime/OnNewStatusNTPActive"
                                                                                                     converter="function(value) {return !value;}">
-                                                                                                </crown-edpws-binding>
+                                                                                                </crown-on>
                                                                                             </davinci-button>
                                                                                         </layout-row>
                                                                                     </layout-column>
@@ -670,11 +645,10 @@
                                                                                     </layout-column>
                                                                                 </layout-row>
                                                                             </stacked-pane>
-                                                                            <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusNTPIsAvailable"
-                                                                                update-on-resume
+                                                                            <crown-on property="value"
+                                                                                crown-event="CSK_DateTime/OnNewStatusNTPIsAvailable"
                                                                                 converter="function(value) {return value.toString();}">
-                                                                            </crown-edpws-binding>
+                                                                            </crown-on>
                                                                         </stacked-view>
                                                                     </layout-column>
                                                                 </layout-row>
@@ -716,30 +690,29 @@
                                                                         <davinci-drop-down id="DD_Timezone"
                                                                             label="Select time zone"
                                                                             title="Set the time zone">
-                                                                            <crown-edpws-binding property="data"
-                                                                                name="CSK_DateTime/OnNewTimezoneList"
-                                                                                update-on-resume
+                                                                            <crown-on property="data"
+                                                                                crown-event="CSK_DateTime/OnNewTimezoneList"
                                                                                 converter="convertToList">
-                                                                            </crown-edpws-binding>
-                                                                            <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusTimezone"
-                                                                                update-on-resume>
-                                                                            </crown-edpws-binding>
-                                                                            <crown-binding event="change"
-                                                                                name="CSK_DateTime/setTimezone"
-                                                                                path="param/args/zone" auto-commit>
-                                                                            </crown-binding>
+                                                                            </crown-on>
+                                                                            <crown-on property="value"
+                                                                                crown-event="CSK_DateTime/OnNewStatusTimezone">
+                                                                            </crown-on>
+                                                                            <crown-set event="change"
+                                                                                crown-function="CSK_DateTime/setTimezone"
+                                                                                protocol="crownMSGPACK"
+                                                                                crown-path="zone">
+                                                                            </crown-set>
                                                                         </davinci-drop-down>
                                                                         <davinci-text-field id="TF_CustomTimezone"
                                                                             type="text" label="Custom time zone">
-                                                                            <crown-edpws-binding property="value"
-                                                                                name="CSK_DateTime/OnNewStatusTimezone"
-                                                                                update-on-resume>
-                                                                            </crown-edpws-binding>
-                                                                            <crown-binding event="change"
-                                                                                name="CSK_DateTime/setCustomTimezoneViaUI"
-                                                                                path="param/args/zone" auto-commit>
-                                                                            </crown-binding>
+                                                                            <crown-on property="value"
+                                                                                crown-event="CSK_DateTime/OnNewStatusTimezone">
+                                                                            </crown-on>
+                                                                            <crown-set event="change"
+                                                                                crown-function="CSK_DateTime/setCustomTimezoneViaUI"
+                                                                                protocol="crownMSGPACK"
+                                                                                crown-path="zone">
+                                                                            </crown-set>
                                                                         </davinci-text-field>
                                                                         <davinci-value-display id="VD_TimezoneInfo">
                                                                             <crown-on property="value"
@@ -763,10 +736,10 @@
 												</span>
                                                 </davinci-callout>
                                             </stacked-pane>
-                                            <crown-edpws-binding property="value"
-                                                name="CSK_DateTime/OnNewStatusSetDateTimeZoneIsAvailable"
-                                                update-on-resume converter="function(value) {return value.toString();}">
-                                            </crown-edpws-binding>
+                                            <crown-on property="value"
+                                                crown-event="CSK_DateTime/OnNewStatusSetDateTimeZoneIsAvailable"
+                                                converter="function(value) {return value.toString();}">
+                                            </crown-on>
                                         </stacked-view>
                                     </layout-column>
                                 </layout-row>
@@ -778,9 +751,9 @@
 									</span>
                                 </davinci-callout>
                             </stacked-pane>
-                            <crown-edpws-binding property="value" name="CSK_DateTime/OnUserLevelMaintenanceActive"
-                                update-on-resume converter="function(value) {return value.toString();}">
-                            </crown-edpws-binding>
+                            <crown-on property="value" crown-event="CSK_DateTime/OnUserLevelMaintenanceActive"
+                                converter="function(value) {return value.toString();}">
+                            </crown-on>
                         </stacked-view>
                     </layout-column>
                 </layout-row>
@@ -796,17 +769,16 @@
                     </layout-column>
                 </layout-row>
             </stacked-pane>
-            <crown-edpws-binding property="value" name="CSK_DateTime/OnNewStatusModuleIsActive" update-on-resume
+            <crown-on property="value" crown-event="CSK_DateTime/OnNewStatusModuleIsActive"
                 converter="function(value) {return value.toString();}">
-            </crown-edpws-binding>
+            </crown-on>
         </stacked-view>
         <stacked-view id="SV_PageCalled">
-            <crown-binding property="value" name="CSK_DateTime/pageCalled" path="result/data/empty" auto-update="0"
-                update-on-resume>
-            </crown-binding>
-            <crown-edpws-binding property="value" name="CSK_DateTime/OnNewStatusCSKStyle" update-on-resume
-                converter="changeStyle">
-            </crown-edpws-binding>
+            <crown-get property="value" crown-function="CSK_DateTime/pageCalled" protocol="crownMSGPACK"
+                crown-path="empty" auto-update-ms="0">
+            </crown-get>
+            <crown-on property="value" crown-event="CSK_DateTime/OnNewStatusCSKStyle" converter="changeStyle">
+            </crown-on>
         </stacked-view>
     </layout-column>
 </layout-row>
